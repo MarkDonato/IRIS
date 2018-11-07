@@ -1,9 +1,9 @@
 ---
 smtpserver: smtp.gmail.com
 smtpport: 587
-sender: "mylabmonitor@gmail.com"
-password: "jd7&3jd8#$83937#$kdf9&R$"
-recipient: "markwd122594@gmail.com, mylabmonitor@gmail.com"
+sender: "myemailer@example.com"
+password: "mypassword"
+recipient: "recipient1@example.com, recipient2@example.com"
 subject: "IRIS Alert"
 message: "This is the default alert message from the IRIS alerting system"
 ...
