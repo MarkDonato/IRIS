@@ -1,0 +1,5 @@
+# Yaml file that contains the list of pylon directory paths for runner to target
+
+# leaving here temporarily but I think passing an object directly to runner with
+#   an array of all the paths would be much better, then runner can send the data
+#   it collected back to the api

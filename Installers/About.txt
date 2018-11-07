@@ -1,0 +1,5 @@
+These installers are intended to assist with basic installation.
+
+They will get the user setup with a basic build to get them on their feet ASAP to give IRIS a try.
+
+All IRIS Software all comes pre-packaged ready to go for both client and server. After the installer finishes getting the system set up it will delete all unnecessary files. This may not be the best solution but it is definitely A solution.
