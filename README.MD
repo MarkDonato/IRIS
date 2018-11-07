@@ -21,10 +21,7 @@ So, IRIS is here to provide a small lending hand to those Sys-Admins. With the u
 By using randomly scattered files called "Pylons" and getting the checksum of those Pylons to send back to the monitor server, if an automated ransomware attack is running rampant and hits one of the Pylons the server will be alerted. From there sys admins have the option to set reaction settings on a per-node basis. Reactions may include changing permissions to stop non-admin users from changing files, sending out an email to desired addresses, making API calls to non-IRIS infrastructure (i.e. automated SMS system, a logging server, etc.), Injecting a custom script, etc.
 
 ### Nurse
-Nurse is designed to be a quick and easy way to view how hard systems are running as well as show other usage stats and display them in an easily legible way so that data can be grouped up together in graphs on a page. Lots of people have already done it, but this is just meant to be a convenience that is built in to the IRIS Suite.
-
-### Real time file system monitor
-Maybe. Watchdog.  
+Nurse is designed to be a quick and easy way to view how hard systems are running as well as show other usage stats and display them in an easily legible way so that data can be grouped up together in graphs on a page. Lots of people have already done it, but this is just meant to be a convenience that is built in to the IRIS Suite. 
 
 ## When
 Currently this is just being built in free time outside of my personal occupation, so I do not have any set deadlines.
@@ -32,5 +29,4 @@ Currently this is just being built in free time outside of my personal occupatio
 
 ## Growth
 ### This system will surely grow and change. Here are some of my thoughts right now and how I may want to implement these additions...
-See about getting logging on the Pylons so that they may see what process/user/whatever may have changed them
-  - Can use watchdog to monitor file changes
+
