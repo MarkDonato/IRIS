@@ -5,18 +5,20 @@
 
 # Import Modules
 import sys
-import json
 import hashlib
 
 # Global Variables
 # runner_id = ''
 jobData = ''
 
+
 # Hash out the specified file with the given hash algorithm in jobData
 def hashFile(filePath):
-    print("Hashing ", filePath, " with", jobData['checksum'], "hashing algorithm") #filePath has white space on either side... may need to sed that outta there
+    # filePath has white space on either side, need to sed that outta there
+    print("Hashing", filePath, "with", jobData['checksum'], "hashing algorithm")
     if jobData['checksum'] == "MD5":
-        print(hashlib.md5(open(filePath, 'rb').read()).hexdigest()) # looks to work, will worry about others later. I'm guessing this could be optimized
+        # This could probably use a re-write
+        print(hashlib.md5(open(filePath, 'rb').read()).hexdigest())
     elif jobData['checksum'] == "SHA1":
         print("NA")
     elif jobData['checksum'] == "SHA224":
@@ -29,6 +31,7 @@ def hashFile(filePath):
         print("NA")
     else:
         print("Unsupported Hash algorithm requested: ", jobData['checksum'])
+
 
 # set and keep track of the runner ID
 def setID(id):
@@ -55,6 +58,7 @@ def main(argv):
     print("\n==== Runner.py ====\n")
     print("TODO: Make this do/say something")
     sys.exit()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

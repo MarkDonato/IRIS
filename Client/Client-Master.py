@@ -11,7 +11,7 @@ import json
 
 # Local Module Imports
 import Runner
-import Creator
+# import Creator
 
 # Self-defined global variables
 isRunning = True
@@ -24,13 +24,14 @@ RUNNER_POLLING_RATE = ''
 RUNNER_THREAD_COUNT = ''
 RUNNER_FILE_COUNT = ''
 
-# Grab the contents of config.yaml and update the global variables with this data
+
+# Update the global variables from config.yaml
 def readConfig():
     global config
     print("Reading config.yaml")
     with open("config.yaml", "r") as stream:
         try:
-            config=yaml.load(stream)
+            config = yaml.load(stream)
         except yaml.YAMLError as yamlException:
             print("")
             print("Client-Master.py:readConfig() -- ", datetime.datetime.now())
@@ -48,11 +49,10 @@ def readConfig():
     RUNNER_FILE_COUNT = config["Master"]["RUNNER_FILE_COUNT"]
 
 
-# Poll the API to see if any pre-built commands are awaiting execution by the IRIS Agent.
-#   These requests are NOT the directories for Runner to check
+# Poll the API to see if any pre-built commands are awaiting execution by the
+#   IRIS Agent. These requests are NOT the directories for Runner to check
 def checkServerRequests():
     print("Checking for change requests from: ", IRIS_API_SERVER)
-    # TODO: Think of a good way to do this without making direct calls to system, don't make an option of this that allows for actual commands to be sent unless the user absolutely wants that and they can choose it with ALLOW_REMOTE_COMMANDS
 
 
 # Check the config the server would like the minion to have, if the config is
@@ -61,15 +61,17 @@ def verifyConfig():
     print("Verifying config file(s) with application server:", IRIS_APP_SERVER)
 
 
-# Grab the JSON from the server for <RUNNER_FILE_COUNT> different file locations.
+# Grab the JSON from the server for <RUNNER_FILE_COUNT> different file locations
 def grabRunnerJobs():
     print("")
     print("Sending Jobs to the runner...")
 
     # Simply a test sample until the server code is.... started....
-    # {"0": "C:\Temp\DocumentA.rtf", "1": "C:\Temp\DocumentB.docx", "2": "C:\Temp\DocumentC.pdf", "3": "C:\Temp\DocumentD.txt"}
     runnerJobs_JSON = {}
-    runnerJobs_JSON['numJobs'] = 4 # if this somehow goes bad things PROBABLY won't go well, add in error allowance in api/server if one is missing or extra or just find a better way to do it
+    # if this somehow goes bad, things PROBABLY won't go well, add in error
+    #   allowance in api/server if one is missing or extra or just find a better
+    #   way to do it
+    runnerJobs_JSON['numJobs'] = 4
     runnerJobs_JSON['0'] = "C:\Temp\DocumentA.rtf"
     runnerJobs_JSON['1'] = "C:\Temp\DocumentB.docx"
     runnerJobs_JSON['2'] = "C:\Temp\DocumentC.pdf"

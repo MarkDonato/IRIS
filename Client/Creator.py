@@ -6,6 +6,7 @@
 # Import Modules
 import sys
 import yaml
+import datetime
 
 # Self-defined global variables
 config = ''
@@ -13,13 +14,14 @@ config = ''
 # Variables to be assigned by config.yaml
 HASH_ALGORITHM = ''
 
-# Grab the contents of config.yaml and update the global variables with this data
+
+# Update the global variables from config.yaml
 def readConfig():
     global config
     print("Reading config.yaml")
     with open("config.yaml", "r") as stream:
         try:
-            config=yaml.load(stream)
+            config = yaml.load(stream)
         except yaml.YAMLError as yamlException:
             print("")
             print("Creator.py:readConfig() -- ", datetime.datetime.now())
@@ -28,11 +30,11 @@ def readConfig():
     global HASH_ALGORITHM
     HASH_ALGORITHM = config["Creator"]["HASH_ALGORITHM"]
 
+
 # Hash out the specified file with the algorithm defined in config.yaml
 def hashFile(filePath, algorithm):
     readConfig()
     print(HASH_ALGORITHM)
-
 
 
 # Creator Main exists to instruct user to use Client-Master.py to call
@@ -43,13 +45,14 @@ def main(argv):
 
     print("\n'Creator.py' is reponsible for the creation of pylons as well as \n\
     grabbing the initial checksums of those pylons based on the checksum \n\
-    protocol specified in 'config.yaml'.")
+    protocol specified in 'config.yaml'")
 
     print("\nUSAGE: Creator.py functionality is invoked by 'Client-Master.py' \n\
     and is not intended to run as a standalone file. View the help page of \n\
-    'Client-Master.py' to see how to create and checksum single files manually.")
+    'Client-Master.py' to see how to create and checksum single files manually")
 
     sys.exit()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

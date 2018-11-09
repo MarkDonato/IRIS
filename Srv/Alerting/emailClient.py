@@ -3,34 +3,42 @@
 ################################################################################
 
 # Module Imports
-import os, sys, mimetypes, yaml, smtplib, getopt
+import sys
+import yaml
+import smtplib
+import getopt
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email import encoders
 
+
+# Main Function
 def main(argv):
     # Inject config.yaml into 'data'
     with open("emailConfig.yaml", "r") as stream:
         try:
-            data=yaml.load(stream)
+            data = yaml.load(stream)
             data['smtpserver']
         except yaml.YAMLError as yamlException:
             print(yamlException)
 
     # Define variables based on emailConfig.yaml
-    SMTP_SERVER=data['smtpserver']
-    SMTP_PORT=data['smtpport']
-    SENDER=data['sender']
-    PASSWORD=data['password']
-    RECIPIENT=data['recipient']
-    SUBJECT=data['subject']
-    MESSAGE=data['message']
+    SMTP_SERVER = data['smtpserver']
+    SMTP_PORT = data['smtpport']
+    SENDER = data['sender']
+    PASSWORD = data['password']
+    RECIPIENT = data['recipient']
+    SUBJECT = data['subject']
+    MESSAGE = data['message']
 
     # Adjust settings based on command line arguments thrown
     print("")
     print("Parsing command line options...")
     try:
-        opts, args = getopt.getopt(argv,"dhm:r:s:",["message_storage=","recipient_storage=","subject_storage="])
+        opts, args = getopt.getopt(
+            argv,
+            "dhm:r:s:",
+            ["message_storage=", "recipient_storage=", "subject_storage="])
     except getopt.GetoptError:
         print("NO PARAMETERS SUPPLIED. USE -h TO VIEW OPTIONS. EXITING...")
         sys.exit(2)
@@ -78,7 +86,7 @@ def main(argv):
 
     # Email content setup
     print("Building Email...")
-    msg=MIMEMultipart()
+    msg = MIMEMultipart()
     msg["Subject"] = SUBJECT
     msg["To"] = RECIPIENT
     msg["From"] = SENDER
@@ -91,7 +99,7 @@ def main(argv):
     try:
         connection = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
         connection.ehlo()
-    except:
+    except Exception:
         print("Error sending ehlo to Email Provider!")
     connection.starttls()
     connection.ehlo()
@@ -105,6 +113,7 @@ def main(argv):
     # Send out the alert
     connection.sendmail(SENDER, RECIPIENT, finalMessage)
     connection.quit()
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
