@@ -8,8 +8,21 @@ import sys
 import hashlib
 
 # Global Variables
-# runner_id = ''
+config = ''
 jobData = ''
+
+
+# Update the global variables from config.yaml
+def readConfig():
+    global config
+    print("Reading config.yaml")
+    with open("config.yaml", "r") as stream:
+        try:
+            config = yaml.load(stream)
+        except yaml.YAMLError as yamlException:
+            print("")
+            print("Client-Master.py:readConfig() -- ", datetime.datetime.now())
+            print(yamlException)
 
 
 # Hash out the specified file with the given hash algorithm in jobData

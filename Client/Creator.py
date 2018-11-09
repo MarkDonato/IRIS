@@ -16,7 +16,6 @@ import hashlib
 config = ''
 
 # Variables to be assigned by config.yaml
-HASH_ALGORITHM = ''
 
 
 # Update the global variables from config.yaml
@@ -30,9 +29,6 @@ def readConfig():
             print("")
             print("Creator.py:readConfig() -- ", datetime.datetime.now())
             print(yamlException)
-
-    global HASH_ALGORITHM
-    HASH_ALGORITHM = config["Creator"]["HASH_ALGORITHM"]
 
 
 # Given a file path and a checksum algorithm to use, hash out the file

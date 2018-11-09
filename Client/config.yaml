@@ -36,8 +36,5 @@ Master:
 Runner:
 
 # Creator.py configuration options
-# Update Requirements: Settings will update when the current creator threads are finished running. 
+# Update Requirements: Settings will update when the current creator threads are finished running.
 Creator:
-  # Hashing algorithm used by Creator. Options are MD5, SHA1, SHA224, SHA256, SHA384, and SHA512
-  # DEFAULT: MD5
-  HASH_ALGORITHM: MD5

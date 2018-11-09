@@ -11,11 +11,16 @@ import json
 
 # Local Module Imports
 import Runner
-# import Creator
+import Creator
 
 # Self-defined global variables
 isRunning = True
 config = ''
+
+# JSON variables
+MasterRequestData_JSON = ''
+MasterResponseData_JSON = ''
+ConfigData_JSON = ''
 
 # Variables to be assigned by config.yaml
 IRIS_API_SERVER = ''
@@ -23,6 +28,13 @@ IRIS_APP_SERVER = ''
 RUNNER_POLLING_RATE = ''
 RUNNER_THREAD_COUNT = ''
 RUNNER_FILE_COUNT = ''
+
+
+# Send output to the specified log file
+def log(logMessage, logType):
+    if logType == "debug":
+        file = open("Log/Debug.log", "a")
+        file.write(logMessage)
 
 
 # Update the global variables from config.yaml
@@ -52,7 +64,11 @@ def readConfig():
 # Poll the API to see if any pre-built commands are awaiting execution by the
 #   IRIS Agent. These requests are NOT the directories for Runner to check
 def checkServerRequests():
+    global requestData_JSON
     print("Checking for change requests from: ", IRIS_API_SERVER)
+
+    # Sample data before the api starts feeding the client
+    requestData_JSON = {}
 
 
 # Check the config the server would like the minion to have, if any of the
@@ -67,11 +83,8 @@ def grabRunnerJobs():
     print("")
     print("Sending Jobs to the runner...")
 
-    # Simply a test sample until the server code is.... started....
+    # Sample data before the api starts feeding the client
     runnerJobs_JSON = {}
-    # if this somehow goes bad, things PROBABLY won't go well, add in error
-    #   allowance in api/server if one is missing or extra or just find a better
-    #   way to do it
     runnerJobs_JSON['numJobs'] = 4
     runnerJobs_JSON['0'] = "C:\Temp\DocumentA.rtf"
     runnerJobs_JSON['1'] = "C:\Temp\DocumentB.docx"
@@ -79,6 +92,11 @@ def grabRunnerJobs():
     runnerJobs_JSON['3'] = "C:\Temp\DocumentD.txt"
     runnerJobs_JSON['checksum'] = "MD5"
     Runner.runJobs(runnerJobs_JSON)
+
+
+# Build a pylon given a particular source and target
+def buildPylon(filePath, sourceFile, checksum):
+    return Creator.buildPylon(filePath, sourceFile, checksum)
 
 
 # DEBUG: pauses services and waits for user input
@@ -112,23 +130,30 @@ def debug_stopMaster():
     isRunning = False
 
 
-# Main function
+# running processes designed to be multithreaded (not yet but will be)
+def minion(threadNumber):
+    print("Thread Number ", threadNumber, " started")
+
+
+# Main function - starts up the functions to get IRIS running on the client
 def main(argv):
     global isRunning
     print("Starting up Client-Master")
     readConfig()
 
-    serverRequests_JSON = ''
-    configVerification_JSON = ''
+    log("test", "debug")
 
+    # Multithread this loop instead of just the calls.
     while isRunning:
         # API Communication
-        serverRequests_JSON = checkServerRequests()
-        configVerification_JSON = verifyConfig()
-        grabRunnerJobs()
+        # requestData_JSON = checkServerRequests()
+        # configVerification_JSON = verifyConfig()
 
-        print("JSON From Server Request: ", serverRequests_JSON)
-        print("JSON From Config Verification Request ", configVerification_JSON)
+        # Either start up the runner or the creator depending on the input
+        #   received by the latest api call
+        # grabRunnerJobs()
+        # buildPylon()
+
 
         # Debugging calls
         # debug_displayConfig()
