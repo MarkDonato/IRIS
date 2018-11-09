@@ -3,6 +3,7 @@
 #   but some are commented out if they are optional settings
 
 # Client-Master.py configuration options
+# Update Requirements: The IRIS service (client-master, currently) must be restarted in order for the changes to take effect
 Master:
 
   # API Server, often times the application server too, but not always
@@ -14,8 +15,8 @@ Master:
   IRIS_APP_SERVER: node2
 
   # Polling Rate for the runner (in seconds)
-  # DEFAULT: 16
-  RUNNER_POLLING_RATE: 16
+  # DEFAULT: 30
+  RUNNER_POLLING_RATE: 30
 
   # Number of Runner threads
   # DEFAULT: 4
@@ -31,9 +32,11 @@ Master:
   ALLOW_REMOTE_COMMANDS: False
 
 # Runner.py configuration options
+# Update Requirements: Settings will update when the current runner threads are finished running.
 Runner:
 
 # Creator.py configuration options
+# Update Requirements: Settings will update when the current creator threads are finished running. 
 Creator:
   # Hashing algorithm used by Creator. Options are MD5, SHA1, SHA224, SHA256, SHA384, and SHA512
   # DEFAULT: MD5

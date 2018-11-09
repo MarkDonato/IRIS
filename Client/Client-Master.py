@@ -55,8 +55,9 @@ def checkServerRequests():
     print("Checking for change requests from: ", IRIS_API_SERVER)
 
 
-# Check the config the server would like the minion to have, if the config is
-#   any different, change it and restart the service/daemon
+# Check the config the server would like the minion to have, if any of the
+#   Master options have changed update the local config and restart the
+#   service/daemon so that the new values can be applied
 def verifyConfig():
     print("Verifying config file(s) with application server:", IRIS_APP_SERVER)
 

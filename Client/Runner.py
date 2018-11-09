@@ -14,21 +14,22 @@ jobData = ''
 
 # Hash out the specified file with the given hash algorithm in jobData
 def hashFile(filePath):
+    print("jobData is ", type(jobData))
     # filePath has white space on either side, need to sed that outta there
     print("Hashing", filePath, "with", jobData['checksum'], "hashing algorithm")
     if jobData['checksum'] == "MD5":
         # This could probably use a re-write
         print(hashlib.md5(open(filePath, 'rb').read()).hexdigest())
     elif jobData['checksum'] == "SHA1":
-        print("NA")
+        print("SHA1 CURRENTLY UNAVAILABLE IN RUNNER.HASHFILE()")
     elif jobData['checksum'] == "SHA224":
-        print("NA")
+        print("SHA224 CURRENTLY UNAVAILABLE IN RUNNER.HASHFILE()")
     elif jobData['checksum'] == "SHA256":
-        print("NA")
+        print("SHA256 CURRENTLY UNAVAILABLE IN RUNNER.HASHFILE()")
     elif jobData['checksum'] == "SHA384":
-        print("NA")
+        print("SHA384 CURRENTLY UNAVAILABLE IN RUNNER.HASHFILE()")
     elif jobData['checksum'] == "SHA512":
-        print("NA")
+        print("SHA512 CURRENTLY UNAVAILABLE IN RUNNER.HASHFILE()")
     else:
         print("Unsupported Hash algorithm requested: ", jobData['checksum'])
 
