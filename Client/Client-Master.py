@@ -12,15 +12,11 @@ import json
 # Local Module Imports
 import Runner
 import Creator
+import Minion_Container
 
 # Self-defined global variables
 isRunning = True
 config = ''
-
-# JSON variables
-MasterRequestData_JSON = ''
-MasterResponseData_JSON = ''
-ConfigData_JSON = ''
 
 # Variables to be assigned by config.yaml
 IRIS_API_SERVER = ''
@@ -30,11 +26,10 @@ RUNNER_THREAD_COUNT = ''
 RUNNER_FILE_COUNT = ''
 
 
-# Send output to the specified log file
-def log(logMessage, logType):
-    if logType == "debug":
-        file = open("Log/Debug.log", "a")
-        file.write(logMessage)
+# Send output to the log file
+def log(logMessage):
+    file = open("Logs/IRIS_Client.log", "a")
+    file.write(logMessage)
 
 
 # Update the global variables from config.yaml
@@ -64,11 +59,18 @@ def readConfig():
 # Poll the API to see if any pre-built commands are awaiting execution by the
 #   IRIS Agent. These requests are NOT the directories for Runner to check
 def checkServerRequests():
-    global requestData_JSON
+    global requestData
     print("Checking for change requests from: ", IRIS_API_SERVER)
 
     # Sample data before the api starts feeding the client
-    requestData_JSON = {}
+    requestData = {}
+    requestData['job'] = "creator"
+    requestData['job_id'] = 1
+    requestData['pylon_source'] = "C:/Users/markw/Git_Repos/IRIS/Client/Default_\
+        Pylons/DefaultPylon.pdf"
+    requestData['pylon_path'] = "C:/Users/markw/Desktop/pylon.pdf"
+    requestData['hash_algorithm'] = "MD5"
+    return requestData
 
 
 # Check the config the server would like the minion to have, if any of the
@@ -76,27 +78,6 @@ def checkServerRequests():
 #   service/daemon so that the new values can be applied
 def verifyConfig():
     print("Verifying config file(s) with application server:", IRIS_APP_SERVER)
-
-
-# Grab the JSON from the server for <RUNNER_FILE_COUNT> different file locations
-def grabRunnerJobs():
-    print("")
-    print("Sending Jobs to the runner...")
-
-    # Sample data before the api starts feeding the client
-    runnerJobs_JSON = {}
-    runnerJobs_JSON['numJobs'] = 4
-    runnerJobs_JSON['0'] = "C:\Temp\DocumentA.rtf"
-    runnerJobs_JSON['1'] = "C:\Temp\DocumentB.docx"
-    runnerJobs_JSON['2'] = "C:\Temp\DocumentC.pdf"
-    runnerJobs_JSON['3'] = "C:\Temp\DocumentD.txt"
-    runnerJobs_JSON['checksum'] = "MD5"
-    Runner.runJobs(runnerJobs_JSON)
-
-
-# Build a pylon given a particular source and target
-def buildPylon(filePath, sourceFile, checksum):
-    return Creator.buildPylon(filePath, sourceFile, checksum)
 
 
 # DEBUG: pauses services and waits for user input
@@ -123,16 +104,30 @@ def debug_displayConfig():
     print(json.dumps(config))
 
 
-# DEBUG: Set the primary loop conditional to be false so that it will stop
-#   Running after the current iteration
-def debug_stopMaster():
-    global isRunning
-    isRunning = False
-
-
 # running processes designed to be multithreaded (not yet but will be)
 def minion(threadNumber):
+    isRunning = True
     print("Thread Number ", threadNumber, " started")
+
+    # JSON variables
+    MasterRequestData_JSON = ''
+    MasterResponseData_JSON = ''
+    ConfigData_JSON = ''
+
+    while isRunning:
+        print("Entering Loop")
+        # API Communication
+        MasterRequestData_JSON = checkServerRequests()
+        ConfigData_JSON = verifyConfig()
+
+        print(MasterRequestData_JSON)
+
+        # Either start up the runner or the creator depending on the input
+        #   received by the latest api call
+        # grabRunnerJobs()
+        # buildPylon()
+
+        isRunning = False
 
 
 # Main function - starts up the functions to get IRIS running on the client
@@ -141,23 +136,11 @@ def main(argv):
     print("Starting up Client-Master")
     readConfig()
 
-    log("test", "debug")
-
-    # Multithread this loop instead of just the calls.
-    while isRunning:
-        # API Communication
-        # requestData_JSON = checkServerRequests()
-        # configVerification_JSON = verifyConfig()
-
-        # Either start up the runner or the creator depending on the input
-        #   received by the latest api call
-        # grabRunnerJobs()
-        # buildPylon()
-
-
-        # Debugging calls
-        # debug_displayConfig()
-        debug_stopMaster()
+    myMinion = Minion_Container.Minion(1)
+    # print(checkServerRequests())
+    requestData = checkServerRequests()
+    myMinion.giveData(requestData)
+    myMinion.start()
 
 
 if __name__ == "__main__":

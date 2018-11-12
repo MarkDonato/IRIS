@@ -7,7 +7,7 @@ Call Runner
 > {"job": string, "job_id": int, "pylon_path": string, "hash_algorithm": string, }
 
 Call Creator
-> {"job": string, "job_id": int, "source_pylon": string, "target_directory": string, "hash_algorithm": string, }
+> {"job": string, "job_id": int, "pylon_source": string, "target_directory": string, "hash_algorithm": string, }
 
 ## MasterResponseData
 MasterResponseData is an api post request that informs the IRIS server the results of its latest run. The job ID is the primary key. After this call lands, if the results were a success the data is stored in the database. The format for this is below:
