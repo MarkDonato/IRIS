@@ -1,6 +1,12 @@
 ################################################################################
 # Python file that will hold the Minion Class, which is responsible for actually
 #   running the jobs requested by the Master.
+#
+# File:
+#   /IRIS/Client/Minion-Container.py
+#
+# Module:
+#   Agent
 ################################################################################
 
 # Third Party Module Imports

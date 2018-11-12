@@ -28,7 +28,10 @@ The application server processes the data fed to it as well as hosts the IRIS we
 ### Other
 A mobile app might be cool one day...
 
-## Programs and features
+## Modules
+
+### Agent
+The agent is the heart and brains of the IRIS client. It keeps the modules running, calls them when they need to be ran, manages job scheduling and performs maintenance on anything that is off.
 
 ### Pylon Real-Time historical comparison monitor (come up with a better name)
 By using randomly scattered files called "Pylons" and getting the checksum of those Pylons to send back to the monitor server, if an automated ransomware attack is running rampant and hits one of the Pylons the server will be alerted. From there sys admins have the option to set reaction settings on a per-node basis. Reactions may include changing permissions to stop non-admin users from changing files, sending out an email to desired addresses, making API calls to non-IRIS infrastructure (i.e. automated SMS system, a logging server, etc.), Injecting a custom script, etc.

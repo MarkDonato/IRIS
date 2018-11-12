@@ -1,6 +1,12 @@
 ################################################################################
 # File/process responsible for creating new files and sending the data for those
 #   files to the master so that it may send this data to the server
+#
+# File:
+#   /IRIS/Client/Creator.py
+#
+# Module:
+#   Pylon Real-Time historical comparison monitor
 ################################################################################
 
 # Import Modules

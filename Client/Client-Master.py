@@ -1,6 +1,12 @@
 ################################################################################
 # File that listens for commands and changes from the server and instructs
 #   the other pieces of the program to start, stop, change, etc.
+#
+# File:
+#   /IRIS/Client/Client-Master.py
+#
+# Module:
+#   Agent
 ################################################################################
 
 # Third Party Module Imports

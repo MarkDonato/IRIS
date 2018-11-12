@@ -3,4 +3,10 @@
 #
 # The main difference between nurse and doctor is that nurse is only reporting
 #   errors it finds, while doctor attempts remediation and analysis
+#
+# File:
+#   /IRIS/Client/Client-Doctor.py
+#
+# Module:
+#   Doctor
 ################################################################################
