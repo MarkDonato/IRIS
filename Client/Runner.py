@@ -6,7 +6,7 @@
 #   /IRIS/Client/Runner.py
 #
 # Module:
-#   Pylon Real-Time historical comparison monitor
+#   Checksum Monitoring Tool
 ################################################################################
 
 # Import Modules

@@ -57,6 +57,7 @@ class Minion:
     # do stuff
     def start(self):
         print("Minion", self.id, "has started...")
+        
         if self.dataBuffer['job'] == "creator":
             print("Calling creator")
             Creator.buildPylon(self.dataBuffer['pylon_path'], self.dataBuffer['pylon_source'], self.dataBuffer['hash_algorithm'])

@@ -1,1 +1,9 @@
 Logs/
+api/__pycache__/
+Client/__pycache__/
+Installer/__pycache__/
+Srv/__pycache__/
+api/test.py
+Client/test.py
+Srv/test.py
+Installers/test.py

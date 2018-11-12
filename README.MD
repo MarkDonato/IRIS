@@ -33,7 +33,7 @@ A mobile app might be cool one day...
 ### Agent
 The agent is the heart and brains of the IRIS client. It keeps the modules running, calls them when they need to be ran, manages job scheduling and performs maintenance on anything that is off.
 
-### Pylon Real-Time historical comparison monitor (come up with a better name)
+### Checksum Monitoring Tool
 By using randomly scattered files called "Pylons" and getting the checksum of those Pylons to send back to the monitor server, if an automated ransomware attack is running rampant and hits one of the Pylons the server will be alerted. From there sys admins have the option to set reaction settings on a per-node basis. Reactions may include changing permissions to stop non-admin users from changing files, sending out an email to desired addresses, making API calls to non-IRIS infrastructure (i.e. automated SMS system, a logging server, etc.), Injecting a custom script, etc.
 
 ### Nurse
@@ -43,4 +43,4 @@ Nurse is designed to be a quick and easy way to view how hard systems are runnin
 WFE will be a small module that sends back the firewall settings of a workstation/server through the stack to be analyzed by the IRIS Application Server. From there it will easily list out the primary settings and rules as well as list all ports that are open to inbound traffic.
 
 ## When
-Currently this is just being built in free time outside of my personal occupation, so I do not have any set deadlines.
+Currently this is just being built in my free time outside of my occupation, so I do not have any set deadlines.

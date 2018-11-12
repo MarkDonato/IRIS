@@ -6,7 +6,7 @@
 #   /IRIS/Client/Creator.py
 #
 # Module:
-#   Pylon Real-Time historical comparison monitor
+#   Checksum Monitoring Tool
 ################################################################################
 
 # Import Modules
@@ -16,25 +16,8 @@ import datetime
 import shutil
 import hashlib
 
-# Local Imports
-
 # Self-defined global variables
 config = ''
-
-# Variables to be assigned by config.yaml
-
-
-# Update the global variables from config.yaml
-def readConfig():
-    global config
-    print("Reading config.yaml")
-    with open("config.yaml", "r") as stream:
-        try:
-            config = yaml.load(stream)
-        except yaml.YAMLError as yamlException:
-            print("")
-            print("Creator.py:readConfig() -- ", datetime.datetime.now())
-            print(yamlException)
 
 
 # Given a file path and a checksum algorithm to use, hash out the file
