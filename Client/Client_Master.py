@@ -14,6 +14,7 @@ import sys
 import yaml
 import datetime
 import json
+import requests
 
 # Local Imports
 import Runner
@@ -82,30 +83,17 @@ def checkServerRequests():
 #   service/daemon so that the new values can be applied
 def verifyConfig():
     print("Verifying config file(s) with application server:", IRIS_APP_SERVER)
+    payload = {'hostname': 'BETTY'}
+    response = requests.post("http://localhost:8000/request_config", data=payload)
+    print(response.text)
 
 
-# DEBUG: pauses services and waits for user input
-def debug_awaitInteraction():
-    input("Hit 'Enter' to proceed...")
 
-
-# DEBUG: displays the values of the config variables
-def debug_displayConfig():
-    print("")
-    print("\n==== Displaying config data in different forms ====\n")
-    print("")
-    print("Displaying config variables...")
-    print("IRIS_API_SERVER          ", IRIS_API_SERVER)
-    print("IRIS_APP_SERVER          ", IRIS_APP_SERVER)
-    print("RUNNER_POLLING_RATE      ", RUNNER_POLLING_RATE)
-    print("RUNNER_THREAD_COUNT      ", RUNNER_THREAD_COUNT)
-    print("RUNNER_FILE_COUNT        ", RUNNER_FILE_COUNT)
-    print("")
-    print("Displaying raw config data...")
-    print(config)
-    print("")
-    print("Displaying raw data JSON Export data...")
-    print(json.dumps(config))
+# send job data and results back to the api
+def informIRIS():
+    payload = {'job_id': '00000004', 'run_result': 'SUCCESS', 'return_data': 'de189187bf1bacf3b4c73b2c6a04734b'}
+    response = requests.post("http://localhost:8000/inform_iris", data=payload)
+    print(response.text)
 
 
 # Main function - starts up the functions to get IRIS running on the client
@@ -113,6 +101,10 @@ def main(argv):
     global isRunning
     print("Starting up Client-Master")
     readConfig()
+
+    print("Running through api calls...")
+    verifyConfig()
+    informIRIS()
 
     # declare minion thread(s)
     myMinion = Minion_Container.Minion(1)

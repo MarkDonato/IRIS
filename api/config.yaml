@@ -1,0 +1,40 @@
+# This is the master config file for the IRIS Client Agent.
+# All available options will already be in the yaml file in the correct place,
+#   but some are commented out if they are optional settings
+
+# Client-Master.py configuration options
+# Update Requirements: The IRIS service (client-master, currently) must be restarted in order for the changes to take effect
+Master:
+
+  # API Server, often times the application server too, but not always
+  # Default: localhost
+  IRIS_API_SERVER: node1
+
+  # Web Application server
+  # Default: localhost
+  IRIS_APP_SERVER: node2
+
+  # Polling Rate for the runner (in seconds)
+  # DEFAULT: 30
+  RUNNER_POLLING_RATE: 30
+
+  # Number of Runner threads
+  # DEFAULT: 4
+  RUNNER_THREAD_COUNT: 4
+
+  # Number of files to check per run (which directories given will be
+  #   logical from the server's POV but will seem random to the client)
+  # DEFAULT: 8
+  RUNNER_FILE_COUNT: 8
+
+  # Config setting to allow for remote commands to be run
+  # DEFAULT: False
+  ALLOW_REMOTE_COMMANDS: False
+
+# Runner.py configuration options
+# Update Requirements: Settings will update when the current runner threads are finished running.
+Runner:
+
+# Creator.py configuration options
+# Update Requirements: Settings will update when the current creator threads are finished running.
+Creator:
