@@ -25,10 +25,15 @@ Planned Supported Platforms: Linux
 
 The application server processes the data fed to it as well as hosts the IRIS web service.
 
+### Database server
+Planned Support Platforms: Linux, Windows
+
+The database server simply holds the SQL databases and may be a part of the application server, api server, or both.
+
 ### Other
 A mobile app might be cool one day...
 
-## Modules
+## Features
 
 ### Agent
 The agent is the heart and brains of the IRIS client. It keeps the modules running, calls them when they need to be ran, manages job scheduling and performs maintenance on anything that is off.

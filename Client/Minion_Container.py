@@ -5,12 +5,13 @@
 # File:
 #   /IRIS/Client/Minion-Container.py
 #
-# Module:
+# Feature:
 #   Agent
 ################################################################################
 
 # Third Party Module Imports
 import json
+import sys
 
 # Local Module Imports
 import Creator
@@ -57,9 +58,24 @@ class Minion:
     # do stuff
     def start(self):
         print("Minion", self.id, "has started...")
-        
+
         if self.dataBuffer['job'] == "creator":
             print("Calling creator")
             Creator.buildPylon(self.dataBuffer['pylon_path'], self.dataBuffer['pylon_source'], self.dataBuffer['hash_algorithm'])
         elif self.dataBuffer['job'] == 'runner':
             print("Calling runner")
+
+
+################################################################################
+# MAIN
+################################################################################
+def main(argv):
+    print("\n==== Minion_Container.py ====\n")
+    print("This file contains the 'Minion' class object and should not be\
+    called upon directly like this. Usage of this file is to construct minion\
+    objects.")
+    quit()
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

@@ -5,7 +5,7 @@
 # File:
 #   /IRIS/Client/Runner.py
 #
-# Module:
+# Feature:
 #   Checksum Monitoring Tool
 ################################################################################
 
@@ -71,15 +71,15 @@ def runJobs(jobRequests_JSON):
     print("")
 
 
-# Runner Main exists to instruct user to either use Client-Master.py to call
-#   runner or use the available command line options to run a single threaded
-#   version of runner, on a particular target for testing purposes
+################################################################################
+# MAIN
+################################################################################
 def main(argv):
     print("\n==== Runner.py ====\n")
-    print("TODO: Make this do/say something")
-    sys.exit()
+    print("Runner is not designed to be run directly but rather be invoked upon\
+    by a minion object.")
+    quit()
 
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-# Self-defined global variables

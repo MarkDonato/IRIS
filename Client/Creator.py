@@ -5,7 +5,7 @@
 # File:
 #   /IRIS/Client/Creator.py
 #
-# Module:
+# Feature:
 #   Checksum Monitoring Tool
 ################################################################################
 
@@ -56,9 +56,9 @@ def buildPylon(filePath, sourceFile, checksumAlgorithm):
     return pylonCheckSum
 
 
-# Creator Main exists to instruct user to use Client-Master.py to call
-#   creator. This will also display some quick information about the Creator and
-#   what it does with some examples and other nifty little tips
+################################################################################
+# MAIN
+################################################################################
 def main(argv):
     print("\n==== Creator.py ====\n")
 
@@ -78,7 +78,7 @@ def main(argv):
         "MD5")
     print(displayChecksum)
 
-    sys.exit()
+    quit()
 
 
 if __name__ == "__main__":

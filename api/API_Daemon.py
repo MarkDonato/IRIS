@@ -1,18 +1,13 @@
 ################################################################################
-# looks for any errors in the IRIS Stack and fixes them
-#
-# The main difference between nurse and doctor is that nurse is only reporting
-#   errors it finds, while doctor attempts remediation and analysis
+# This is the Daemon that keeps the HugAPI online and running as well as
+#   hosting the functions used to interact with the database
 #
 # File:
-#   /IRIS/Client/Doctor.py
-#
-# Feature:
-#   Doctor
+#   /IRIS/api/API_Daemon.py
 ################################################################################
 
 # Third Party Imports
-import sys
+
 
 # Local Imports
 
@@ -32,7 +27,8 @@ def example():
 # MAIN
 ################################################################################
 def main(argv):
-    print("\n==== Doctor.py ====\n")
+    print("\n==== API_Daemon.py ====\n")
+    print("Checking status of the IRIS API")
     quit()
 
 

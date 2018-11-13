@@ -1,14 +1,13 @@
+
+
 ################################################################################
 # looks for any errors in the IRIS Stack and fixes them
 #
-# The main difference between nurse and doctor is that nurse is only reporting
-#   errors it finds, while doctor attempts remediation and analysis
-#
 # File:
-#   /IRIS/Client/Doctor.py
+#   /IRIS/Srv/Server_Doctor.py
 #
-# Feature:
-#   Doctor
+# Module:
+#   If file is a module, throw its name here
 ################################################################################
 
 # Third Party Imports
@@ -32,7 +31,7 @@ def example():
 # MAIN
 ################################################################################
 def main(argv):
-    print("\n==== Doctor.py ====\n")
+    print("\n==== Server_Doctor.py ====\n")
     quit()
 
 
