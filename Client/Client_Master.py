@@ -88,7 +88,6 @@ def verifyConfig():
     print(response.text)
 
 
-
 # send job data and results back to the api
 def informIRIS():
     payload = {'job_id': '00000004', 'run_result': 'SUCCESS', 'return_data': 'de189187bf1bacf3b4c73b2c6a04734b'}
